@@ -360,6 +360,10 @@
         z-index: 999;
     }
     
+    .bg {
+        background: #eee;
+    }
+    
     .three p {
         font-family: Bio Sans;
         font-size: 20px;
@@ -583,7 +587,7 @@
 
                             </div>
                         </div>
-                        <div class="miaoshu"> {{curLangule["key4"]}}</div>
+                        <div class="miaoshu" v-on:click="tubiao1()"> {{curLangule["key4"]}}</div>
                         <div class="tubiao1" v-on:click="tubiao1()">
                             <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAbklEQVRYhe3OsRGAMAxDUY3GKBktm0KT3KUIh41lQyH19n+ApmnaD3cAaAl/2/htApxkRBs/XQAWYsbNAADoJMQa797jKCIUjyIo8bcIatyLSIlbEanxJ0RJ/A5RGt8hyuM7RHl8RXwW1zRNo+wCoCRDVei37vEAAAAASUVORK5CYII="
                                 v-if="!elaBankIsShow" />
@@ -629,7 +633,7 @@
 
                             </div>
                         </div>
-                        <div class="miaoshu"> {{curLangule["key7"]}}</div>
+                        <div class="miaoshu" v-on:click="tubiao()"> {{curLangule["key7"]}}</div>
                         <div class="tubiao" v-on:click="tubiao()">
                             <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAbklEQVRYhe3OsRGAMAxDUY3GKBktm0KT3KUIh41lQyH19n+ApmnaD3cAaAl/2/htApxkRBs/XQAWYsbNAADoJMQa797jKCIUjyIo8bcIatyLSIlbEanxJ0RJ/A5RGt8hyuM7RHl8RXwW1zRNo+wCoCRDVei37vEAAAAASUVORK5CYII="
                                 v-if="!otherIsShow" />
@@ -669,8 +673,10 @@
                 </p>
             </div>
 
-            <div class="three" v-on:click="tiaozhuan">
-                <p :disabled="seleced<1 || seleced>36">
+            <div class="three" v-on:click="tiaozhuan" :class="{
+                'bg':seleced<1 || seleced>36, 
+              }">
+                <p>
                     {{curLangule["key2"]}}（{{seleced}}/36）
                 </p>
             </div>
