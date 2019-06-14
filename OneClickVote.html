@@ -312,28 +312,21 @@
         background: #FFFFFF;
         box-shadow: 0px 3px 5px rgba(65, 78, 178, 0.09);
         border-radius: 10px;
+        padding: 10px 0px;
     }
     
     .first p {
-        padding-top: 10px;
         margin: 0px 10px;
         font-family: Bio Sans;
         font-size: 16px;
         line-height: 24px;
-        /* or 150% */
-        display: flex;
         align-items: center;
         text-align: center;
         color: #000000;
     }
     
-    .first span {
-        padding: 10px 0px;
-        font-family: Bio Sans;
-        font-size: 16px;
-        align-items: center;
+    .first p span {
         color: #5F6FED;
-        display: block;
         cursor: pointer
     }
     
@@ -573,16 +566,18 @@
         <div v-if="!loading">
             <div class="jinju"></div>
             <div class="first" v-on:click="learn">
-                <p>
-                    {{curLangule["key"]}}
+                <p v-if="curLanguleKey==='zh'">
+                    一键投票给已托管在ELA Bank的高收益节点，可以赢取ELA奖励啦！ELA Bank会将投票奖励自动发到您的钱包里！欢迎前往<span>ELA Bank</span>查看收益分配公式！
                 </p>
-                <span>{{curLangule["key1"]}}</span>
+                <p v-else>
+                    Earn ELA by voting the top bonus supernodes managed by ELA Bank! The bonus will be sent to your wallet by ELA Bank automatically. You may check the details on how the bonus is distributed at <span>ELA Bank</span>.
+                </p>
             </div>
             <div class="jinju"></div>
             <div class="second">
                 <div class="elabank">
                     <div class="header">
-                        <div class="c-checkbox" v-on:click="elaBankAll()" v-if="elaBankIsShow">
+                        <div class="c-checkbox" v-on:click="elaBankAll()">
                             <div class="tc" v-if="ebankChecked">
 
                             </div>
@@ -628,7 +623,7 @@
             <div class="second">
                 <div class="elabank">
                     <div class="header">
-                        <div class="c-checkbox" v-on:click="otherAll()" v-if="otherIsShow">
+                        <div class="c-checkbox" v-on:click="otherAll()">
                             <div class="tc" v-if="otherChecked">
 
                             </div>
@@ -707,7 +702,6 @@
                 key5: 'Bonus',
                 key6: 'year',
                 key7: 'Unmanaged nodes',
-
             },
             curLangule: {},
             appConfig: {
@@ -726,6 +720,7 @@
             otherIsShow: false,
             elaBankIsShow: true,
             seleced: 0,
+            curLanguleKey: 'zh'
         },
         methods: {
             buildVoteSchema: function(appConfig, nodePublicKeyList) {
@@ -775,15 +770,19 @@
             },
             getLanugle: function() {
                 this.curLangule = this.en;
+                this.curLanguleKey = 'en';
                 var JsSrc = (navigator.language || navigator.browserLanguage).toLowerCase();
                 if (JsSrc.indexOf('zh') >= 0) {
                     // 假如浏览器语言是中文
+                    this.curLanguleKey = 'zh';
                     this.curLangule = this.zh;
                 } else if (JsSrc.indexOf('en') >= 0) {
                     this.curLangule = this.en;
+                    this.curLanguleKey = 'en';
                 } else {
                     // 假如浏览器语言是其它语言
                     this.curLangule = this.en;
+                    this.curLanguleKey = 'en';
                 }
             },
             getNodeList(AllNode) {
