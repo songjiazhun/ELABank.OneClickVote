@@ -348,14 +348,34 @@
         bottom: 10px;
         margin: 0 auto;
         height: 48px;
-        line-height: 48px;
-        background: #FFFFFF;
+        /*line-height: 48px; */
+        background: #DAEBF7;
+        box-shadow: 0px 4px 4px rgba(100, 100, 100, 0.16);
         border-radius: 4px;
         z-index: 999;
     }
     
-    .bg {
-        background: #eee;
+    .four {
+        position: fixed;
+        width: 98%;
+        left: 0;
+        right: 0;
+        bottom: 10px;
+        margin: 0 auto;
+        height: 48px;
+        /* line-height: 48px; */
+        background: #F1F1F1;
+        box-shadow: 0px 4px 4px rgba(100, 100, 100, 0.16);
+        border-radius: 4px;
+        z-index: 999;
+    }
+    
+    .four p {
+        font-family: Bio Sans;
+        font-size: 20px;
+        text-align: center;
+        color: #222222;
+        opacity: 0.4;
     }
     
     .three p {
@@ -363,20 +383,6 @@
         font-size: 20px;
         text-align: center;
         color: #5F6FED;
-    }
-    
-    .shuoming {
-        position: fixed;
-        left: 10px;
-        bottom: 68px;
-        font-family: Bio Sans;
-        font-size: 14px;
-        line-height: 17px;
-        display: flex;
-        align-items: center;
-        color: #FFFFFF;
-        z-index: 999;
-        background-color: #5F6FED;
     }
     
     .elabank {
@@ -425,17 +431,17 @@
     .elabank .tubiao {
         position: absolute;
         top: 16px;
-        right: -27px;
-        width: 100px;
-        height: 100px;
+        right: 0px;
+        width: 90px;
+        height: 90px;
     }
     
     .elabank .tubiao1 {
         position: absolute;
         top: 16px;
-        right: -27px;
-        width: 100px;
-        height: 100px;
+        right: 0px;
+        width: 90px;
+        height: 90px;
     }
     
     .item {
@@ -515,11 +521,10 @@
     
     .item .name span {
         font-family: Bio Sans;
-        font-size: 16px;
-        line-height: 20px;
+        font-size: 12px;
+        /* line-height: 20px; */
         display: flex;
-        align-items: center;
-        color: #222222;
+        align-items: left;
     }
     
     .item .rate {
@@ -580,13 +585,15 @@
         </div>
         <div v-if="!loading">
             <div class="jinju"></div>
-            <div class="first" v-on:click="learn">
-                <p v-if="curLanguleKey==='zh'">
+            <div class="first">
+                <p v-if="curLanguleKey==='zh'" v-on:click="learn">
                     一键投票给已托管在<span>ELA Bank</span>的高收益节点，可以赢取ELA奖励啦！<span>ELA Bank</span>会将投票奖励自动发到您的钱包里！欢迎前往<span>ELA Bank</span>查看收益分配公式！
                 </p>
-                <p v-else>
+                <p v-else v-on:click="learn">
                     Earn ELA by voting the top bonus supernodes managed by <span>ELA Bank</span>! The bonus will be sent to your wallet by <span>ELA Bank</span> automatically. You may check the details on how the bonus is distributed at <span>ELA Bank</span>.
                 </p>
+                <p style="text-align:right" v-on:click="dianbao"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAN/SURBVHgBrVVdbFRFFP7O3Nm9y97dTS2lpha0dMWmtcUGf15MNCaGxGgk0RjtGjUxPpSa8BNf9MUoiWl8Eo2R6Etf1PZFE+JbTUyEQMJfoBQK4XcLBRra0pbSpXv3zgzn3kID7b2lC5xkdueemfOdc75zZoawiLR2na+Ip+lTEvQKAQ0GWCEAC6DT2qgpA/rTuF7vgbanL0ZhUJjypb+HlpP2OonoIwhKYBExxvg/XUX35rYjbY35+zp4oef8BhGjHUSiBuWIwagqltoP5rJ/RTp4sefsZpJye3heSxPleV8eej/7/QIH634/9ZaIx/4hIfBQwpR5JZU7nMt2zzlo7TpRZzmJffxZjUciZsK76Tb3fdJwaTbcZfGv2XG1X7BHM1AhbOuHIIPm7v5VkpxBQvnMV9gC79RnUONIfHdwdP6yUq5+QgqdWG8IZJaOi5drktiwOoXXah34Jesfm4HWC7ZZIPWZBERb0Mv3kYaKON54KoU361LIxC1MFooYn55BZSqByaJGGAYJ+ao02lT6TRwmaQZ6fZWD9U+m0LLcBjGJJaUxODKFVEJiRWYZWxrsvTINE5ICa5qkNmbN/IXnqhLINWTQWGkjExN8mAm8D9enXVwdL6Cm0uHI7UAnuHT9I0xReIyPS63vzc3iKD9m8GfZieS5b+hHPXztBldNY2V1Go4toVg/24IGZyZcrkGoB0sy/AhvSt/ReLxvy65hVCUsNDMt76124BgP0hKorc7AliIAtxjYJ2VgrIgpVyFCLrADc5JH/fyVqwUP//GIaYUP65NwkjFIQXPgimmzeH4qOnq/ZnnBae9Z7NDsHi4GLdA3OIrjlycDne9EB/8GB64UIm2VMv+LkjZdxu8yzjds3HA1To4zDczdN/vH0N47hMtTbuDAD3yAz0CUrVbmj+D0Zn89vpMfj7ejiMymLYxzr19zZ6nwT+7W56uQfczGuzsHw40Mus+1N+UCB2t+OVrvkTXAUxtlSJLbrOCF8j/DDdyY39iYDzrtdMfac8qoTeVeatMlHbX2lQ/uY89d/hc61v7GK9/OvoAPPrh3tuU7mrffwV1wg678qW+TsEQnc5hEGRLgE7YOfd7y49360Cu6bseJupLndXJ6H2Bp0gttfXFxc9Ox+QuLvgG1Px95RmjaaIjWkTGt3GmZ20YTHPEZIvOvUaJnaEvL0SiMWwhoPliG9NzgAAAAAElFTkSuQmCC"
+                    /></p>
             </div>
             <div class="jinju"></div>
             <div class="second">
@@ -676,20 +683,30 @@
 
 
 
-            <div style="padding-top:95px"></div>
-            <div class="shuoming">
-                <p>
-                    {{curLangule["key3"]}}{{maxRate}}%
-                </p>
-            </div>
+            <div style="padding-top:75px"></div>
 
-            <div class="three" v-on:click="tiaozhuan" :class="{
+            <!-- <div class="three" v-on:click="tiaozhuan" :class="{
                 'bg':seleced<1 || seleced>36, 
               }">
                 <p>
                     {{curLangule["key2"]}}（{{seleced}}/36）
                 </p>
+            </div> -->
+
+            <div class="three" v-on:click="tiaozhuan" v-if="seleced>0 && seleced<37">
+                <p style="margin-top: 6px">
+                    {{curLangule["key2"]}}<span>（{{seleced}}/36）<p style="font-size: 12px;color: #163445;margin-top: 5px">{{curLangule["key3"]}}{{maxRate}}%</p>
+                </p>
             </div>
+           
+            <div class="four" v-else>
+                <p style="margin-top: 6px">
+                    {{curLangule["key2 "]}}<span>（{{seleced}}/36）</span>
+                    <p style="font-size: 12px;color: #163445;margin-top: 5px">{{curLangule["key3"]}}{{maxRate}}%</p>
+                </p>
+            </div>
+
+
         </div>
     </div>
 </body>
@@ -700,8 +717,7 @@
             loading: true,
             zh: {
                 key: '一键投票给已托管在ELA Bank的高收益节点，可以赢取ELA奖励啦！ELA Bank会将投票奖励自动发到您的钱包里！欢迎前往ELA Bank查看收益分配公式！',
-                key1: '了解更多',
-                key2: '投票高收益节点',
+                key2: '投票',
                 key3: '预估年化收益率',
                 key4: '已托管节点',
                 key5: '奖励',
@@ -710,8 +726,7 @@
             },
             en: {
                 key: 'Earn ELA by voting the top bonus supernodes managed by ELA Bank! The bonus will be sent to your wallet by ELA Bank automatically. You may check the details on how the bonus is distributed at here.',
-                key1: 'Learn More',
-                key2: 'Vote Top Bonus Nodes',
+                key2: 'Vote',
                 key3: 'est. yearly bonus rate: ',
                 key4: 'Managed nodes',
                 key5: 'Bonus',
@@ -1010,6 +1025,9 @@
             },
             learn() {
                 window.open("https://elabank.net/");
+            },
+            dianbao() {
+                window.open("https://t.me/elabank");
             },
             help(url) {
                 //window.open(url);
