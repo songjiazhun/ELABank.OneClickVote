@@ -685,14 +685,6 @@
 
             <div style="padding-top:75px"></div>
 
-            <!-- <div class="three" v-on:click="tiaozhuan" :class="{
-                'bg':seleced<1 || seleced>36, 
-              }">
-                <p>
-                    {{curLangule["key2"]}}（{{seleced}}/36）
-                </p>
-            </div> -->
-
             <div class="three" v-on:click="tiaozhuan" v-if="seleced>0 && seleced<37">
                 <p style="margin-top: 6px">
                     {{curLangule["key2"]}}<span>（{{seleced}}/36）<p style="font-size: 12px;color: #163445;margin-top: 5px">{{curLangule["key3"]}}{{maxRate}}%</p>
@@ -735,10 +727,10 @@
             },
             curLangule: {},
             appConfig: {
-                "AppID": "23091883A390CCBFFFED4928F996936AFCEBB1B57192532D15271158F3A277FD1BB3309DA2719334CBE1DE7BA2408047E2786A94F370CE66C208159B3A8D1162",
-                "AppName": "dopsvote.h5.app",
-                "DID": "iZW9ozTSXk4ukRXx7vCTTFYebZHFwMUtz7",
-                "PublicKey": "03128A35842DD061BD016B9B2913BE07028063E5A80365D713DB77508406E85815",
+                "AppID": "4de01b0013bd4e5611e93107c72c09cb813680fd6c3c7fddb0dca5a739327d76d30dfd5768c8da47b29dc6c1c928b4c1f08fdb23a926e713abcbee9c2f13c16c",
+                "AppName": "ELA Bank vote",
+                "DID": "iqtsbtKiVUoAXGY9G8YxTdU6h6Vt1LxHsa",
+                "PublicKey": "027a15e6d22d9b080224f1a58c516d6fb838c5891350b5f311928c37f18a43c81a",
                 "ReturnUrl": "https://elaphant.net/#/return_url",
             },
             nodePublicKeyList: {},
@@ -795,7 +787,7 @@
                     return;
                 }
                 var url = this.buildVoteSchema(this.appConfig, this.sPublics);
-                var turl = 'https://elephantwallet.app/redirect?appName=dopsvote.h5.app&appTitle=walletdopsvote.h5.app&redirectURL=' + encodeURIComponent(url);
+                var turl = 'https://elephantwallet.app/redirect?appName=ELA Bank vote&appTitle=ELA Bank vote&redirectURL=' + encodeURIComponent(url);
                 location.href = turl;
             },
             getLanugle: function() {
