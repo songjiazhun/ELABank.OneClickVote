@@ -571,7 +571,7 @@
     .cycle {
         position: absolute;
         top: 61px;
-        left: 112px;
+        left: 108px;
     }
     
     .cycle span {
@@ -579,7 +579,20 @@
         font-size: 12px;
         align-items: center;
         color: #000000;
-        font-weight: bold;
+        font-weight: 400;
+    }
+    
+    .rate1 {
+        position: absolute;
+        top: 42px;
+        left: 108px;
+    }
+    
+    .item .rate1 span {
+        font-family: Bio Sans;
+        font-size: 12px;
+        align-items: center;
+        color: #5F6FED;
     }
 </style>
 <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.js"></script>
@@ -648,11 +661,13 @@
                         <i>{{index+1}}</i>
                         <img src="data:image/png;base64,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"
                         />
+                    </div>
+                    <div class="rate1">
                         <span>{{curLangule["key5"]}}</span>: <span>{{accMul(100,item.rate)}}%</span> / <span> {{curLangule["key6"]}}</span>
                     </div>
 
                     <div class="cycle">
-                        <span>{{curLangule["key8"]}}</span>:<span>{{curLangule[registerInfo[item.Producer_public_key]['schedule']]}}</span>
+                        <span>{{curLangule["key8"]}}:{{curLangule[registerInfo[item.Producer_public_key]['schedule']]}}</span>
                     </div>
                 </div>
                 <div class="round"></div>
@@ -733,7 +748,7 @@
                 key5: '奖励',
                 key6: '年',
                 key7: '未托管节点',
-                key8: '奖金周期',
+                key8: '奖金发放周期',
                 ROUND: '轮',
                 DAY: '天',
                 WEEK: '周',
@@ -754,7 +769,6 @@
                 WEEK: 'Week',
                 MONTH: 'Month',
                 YEAR: 'Year'
-
             },
             curLangule: {},
             appConfig: {
