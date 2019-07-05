@@ -873,31 +873,34 @@
                             var all = {};
                             var kIndex = 0;
                             _.forEach(value, function(val, key, index) {
-                                var item = AllNode[key];
-                                if (val['registered'] === 'YES') {
-                                    var seleced = true;
-                                    if (kIndex > 35) {
-                                        seleced = false
-                                    }
-                                    var item1 = {
-                                        'producerPublicKey': key,
-                                        'registered': val['registered'],
-                                        'seleced': seleced,
-                                        'rate': val['rate']
-                                    };
-                                    Vue.set(that.sPublics, key, item1);
-                                    kIndex++;
-                                } else {
-                                    var item1 = {
-                                        'producerPublicKey': key,
-                                        'registered': val['registered'],
-                                        'seleced': false,
-                                        'rate': val['rate']
-                                    };
+                                if (AllNode[key]) {
+                                    var item = AllNode[key];
+                                    if (val['registered'] === 'YES') {
+                                        var seleced = true;
+                                        if (kIndex > 35) {
+                                            seleced = false
+                                        }
+                                        var item1 = {
+                                            'producerPublicKey': key,
+                                            'registered': val['registered'],
+                                            'seleced': seleced,
+                                            'rate': val['rate']
+                                        };
+                                        Vue.set(that.sPublics, key, item1);
+                                        kIndex++;
+                                    } else {
+                                        var item1 = {
+                                            'producerPublicKey': key,
+                                            'registered': val['registered'],
+                                            'seleced': false,
+                                            'rate': val['rate']
+                                        };
 
-                                    Vue.set(that.sPublics, key, item1);
+                                        Vue.set(that.sPublics, key, item1);
+                                    }
+                                    all[key] = Object.assign({}, item, val);
                                 }
-                                all[key] = Object.assign({}, item, val);
+
                             });
                             that.maxRate = that.jisuan();
                             that.seleced = that.getSelect();
@@ -924,7 +927,11 @@
 
                         if (data.status === 200) {
                             //that.loading = false;
-                            var value = _.keyBy(data.result, 'Producer_public_key');
+                            var value = data.result;
+                            var value = that.handleNodeList(data.result);
+                            console.log("==============" + JSON.stringify(value));
+                            value = _.keyBy(value, 'Producer_public_key');
+                            console.log("==============" + JSON.stringify(value));
                             that.getNodeList(value);
                         }
                     },
@@ -1094,6 +1101,20 @@
                         that.loading = false;
                     }
                 });
+            },
+            handleNodeList(nodeList) {
+                var arr = [];
+                for (var index = 0; index < nodeList.length; index++) {
+                    var item = nodeList[index];
+                    if (item["State"] === "pending" || item["State"] === "Activate" || item["State"] === "inactive" || item["State"] === "Active" || item["State"] === "active" || item["State"] === "Inactive") {
+                        var location = item["Location"].toString();
+                        if (location.substring(0, 2) === "00") {
+                            item["Location"] = parseInt(location.substring(2));
+                        }
+                        arr.push(item);
+                    }
+                }
+                return arr;
             }
         },
         created: function() {
