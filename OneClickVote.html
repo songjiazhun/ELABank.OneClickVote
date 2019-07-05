@@ -927,11 +927,9 @@
 
                         if (data.status === 200) {
                             //that.loading = false;
-                            var value = data.result;
+                            //var value = data.result;
                             var value = that.handleNodeList(data.result);
-                            console.log("==============" + JSON.stringify(value));
                             value = _.keyBy(value, 'Producer_public_key');
-                            console.log("==============" + JSON.stringify(value));
                             that.getNodeList(value);
                         }
                     },
