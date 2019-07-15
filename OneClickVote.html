@@ -833,7 +833,7 @@
                     return;
                 }
                 var url = this.buildVoteSchema(this.appConfig, this.sPublics);
-                var turl = 'https://elephantwallet.app/redirect?appName=ELA Bank vote&appTitle=ELA Bank vote&redirectURL=' + encodeURIComponent(url);
+                var turl = 'https://elephantwallet.app/redirect?appName=ELA Bank vote&appTitle=ELA Bank vote&autoRedirect=True&redirectURL=' + encodeURIComponent(url);
                 location.href = turl;
             },
             getLanugle: function() {
