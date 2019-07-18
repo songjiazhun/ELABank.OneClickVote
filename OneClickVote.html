@@ -594,6 +594,10 @@
         align-items: center;
         color: #5F6FED;
     }
+    
+    [v-cloak] {
+        display: none;
+    }
 </style>
 <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.js"></script>
 <script src="https://cdn.bootcss.com/lodash.js/4.17.12-pre/lodash.min.js"></script>
@@ -601,7 +605,7 @@
 
 <body>
 
-    <div id="app">
+    <div id="app" v-cloak>
         <div class="spinner" v-if="loading">
 
             <div class="bounce1"></div>
