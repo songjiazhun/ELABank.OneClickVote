@@ -866,7 +866,7 @@
                 }
                 var url = this.buildVoteSchema(this.appConfig, this.sPublics);
 
-                if (this.isPc() || this.isWechat()) {
+                if (this.isPC() || this.isWechat()) {
                     var turl = 'https://launch.elaphant.app?appName=ELA Bank vote&appTitle=ELA Bank vote&autoRedirect=True&redirectURL=' + encodeURIComponent(url);
                     location.href = turl;
                 } else {
