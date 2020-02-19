@@ -837,6 +837,25 @@
                 url += 'CandidatePublicKeys=' + publics;
                 return url;
             },
+            isPC() {
+                var userAgentInfo = navigator.userAgent;
+                var Agents = ["Android", "iPhone",
+                    "SymbianOS", "Windows Phone",
+                    "iPad", "iPod"
+                ];
+                var flag = true;
+                for (var v = 0; v < Agents.length; v++) {
+                    if (userAgentInfo.indexOf(Agents[v]) > 0) {
+                        flag = false;
+                        break;
+                    }
+                }
+                return flag;
+            },
+            isWechat() {
+                var ua = navigator.userAgent.toLowerCase();
+                return /micromessenger/i.test(ua) || typeof navigator.wxuserAgent !== 'undefined';
+            },
             tiaozhuan: function() {
                 if (this.seleced < 1) {
                     return;
@@ -846,8 +865,14 @@
                     return;
                 }
                 var url = this.buildVoteSchema(this.appConfig, this.sPublics);
-                var turl = 'https://launch.elaphant.app?appName=ELA Bank vote&appTitle=ELA Bank vote&autoRedirect=True&redirectURL=' + encodeURIComponent(url);
-                location.href = turl;
+
+                if (this.isPc() || this.isWechat()) {
+                    var turl = 'https://launch.elaphant.app?appName=ELA Bank vote&appTitle=ELA Bank vote&autoRedirect=True&redirectURL=' + encodeURIComponent(url);
+                    location.href = turl;
+                } else {
+                    location.href = url;
+                }
+
             },
             getLanugle: function() {
                 this.curLangule = this.en;
