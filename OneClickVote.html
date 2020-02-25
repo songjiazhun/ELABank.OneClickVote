@@ -806,11 +806,15 @@
         methods: {
             buildVoteSchema: function(appConfig, nodePublicKeyList) {
                 var url = "elaphant://eladposvote?";
+                var returnUrl = "";
                 for (var key in appConfig) {
                     if (key === 'ReturnUrl') {
-                        appConfig[key] = encodeURIComponent(appConfig[key]);
+                        returnUrl = encodeURIComponent(appConfig[key]);
+                        url += key + '=' + returnUrl + '&';
+                    } else {
+                        url += key + '=' + appConfig[key] + '&';
                     }
-                    url += key + '=' + appConfig[key] + '&';
+
                 }
                 var publics = "";
                 var value = _.cloneDeep(nodePublicKeyList);
